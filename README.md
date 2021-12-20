@@ -32,7 +32,7 @@
 
 + Q: **什么是Thesarea？**
 
-        A: 基于ArcaeaLimitedApi和AndreabotDB的开源ArcBot项目，**Thesarea** = **thes**eus + **ar**caea + andr**ea**。
+        A: 基于ArcaeaLimitedApi和AndreabotDB的开源ArcBot项目，Thesarea = "thes"eus + "ar"caea + andr"ea"。
  
 + Q: **为什么要开发Thesarea？**
 
