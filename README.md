@@ -26,7 +26,10 @@
 * 向lowiro写邮件申请ApiToken（详见 **常见问题**-**什么是ArcaeaLimitedApi？如何申请ApiToken？**）
 * 下载 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp/releases "go-cqhttp")
 * 下载 [Thesarea](https://github.com/Awbugl/Thesarea/releases "Thesarea")
-* 配置IP、端口、Bot账号密码、ApiToken等（详细教程日后补上）
+* 启动go-cqhttp，待config.yml生成后按提供的 config.yml 模板配置的Bot账号密码及通信端口，保存后重启go-cqhttp
+* 启动ThesareaClient配置通信端口（保存在 Thesarea/portconfig 中，也可手动创建/修改此文件）
+* 初次接受指令后会自动生成 Thesarea/ThesareaConfig.json 文件，填写ApiEndpoint(在Lowiro提供的网页文档中)、Token(在Lowiro的邮件中)，保存后重启ThesareaClient
+* 若一切顺利，此时您的Bot就已经可用。
 
 #### 常见问题
 
@@ -40,7 +43,7 @@
 
 + Q: **什么是ArcaeaLimitedApi？如何申请ApiToken？**
 
-        A: Lowiro为开发者提供的官方查分接口，详情可移步 [ArcaeaLimitedAPI 的相关信息及申请方法](https://www.bilibili.com/read/cv14491110 "ArcaeaLimitedAPI 的相关信息及申请方法") 查看。
+        A: Lowiro为开发者提供的官方查分接口，详情可移步 [ArcaeaLimitedAPI 的相关信息及申请方法](https://www.bilibili.com/read/cv14491110) 查看。
 
 + Q: **我部署Thesarea会得到什么？**
 
