@@ -52,9 +52,7 @@ service.ConnManager.OnCloseConnectionAsync += (connectionId, eventArgs) =>
 //连接成功元事件
 service.Event.OnClientConnect += (_, _) =>
                                  {
-                                     Log.Info("Thesarea", "");
                                      Log.Info("Thesarea|Message", "交流群 191234485");
-                                     Log.Info("Thesarea", "");
                                      External.Initialize();
                                      return ValueTask.CompletedTask;
                                  };

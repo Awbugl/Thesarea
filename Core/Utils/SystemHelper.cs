@@ -24,8 +24,10 @@ internal static class SystemHelper
         if (!File.Exists(Path.Config))
         {
             File.WriteAllText(Path.Config,
-                              "{\"apiurl\": \"https://exampleapi.example.com/api/v0\",\"token\": \"your token\"");
+                              "{\"apiurl\": \"https://exampleapi.example.com/api/v0\",\"token\": \"your token\"}");
             Console.WriteLine("ThesareaConfig默认配置文件已生成，请修改 ThesareaConfig.json 后重新启动!");
+            Console.WriteLine("按任意键结束...");
+            Console.ReadKey();
             Environment.Exit(-1);
         }
 
