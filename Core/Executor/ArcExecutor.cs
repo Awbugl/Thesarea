@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using ThesareaClient.Core.Api;
 using ThesareaClient.Core.Model;
 using ThesareaClient.Core.RobotReply;
@@ -50,11 +48,9 @@ internal class ArcExecutor : ExecutorBase
         if (User == null) return RobotReply.NotBind;
         if (User.ArcId < 2) return RobotReply.NotBindArc;
 
-        var b30data = new LimitedBest30Data(ArcaeaLimitedApi.Userbest30(User.ArcId)!);
-
         return IsGroup
             ? RobotReply.PleasePrivateMessage
-            : b30data.Best30TextResult;
+            : new LimitedBest30Data(ArcaeaLimitedApi.Userbest30(User.ArcId)!).Best30TextResult;
     }
 
     private string Recent()
