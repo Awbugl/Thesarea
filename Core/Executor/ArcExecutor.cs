@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using ThesareaClient.Core.Api;
 using ThesareaClient.Core.Model;
 using ThesareaClient.Core.RobotReply;
@@ -15,13 +17,13 @@ internal class ArcExecutor : ExecutorBase
     public ArcExecutor(MessageInfo info) : base(info) { }
 
     [CommandPrefix("/arc bind ")]
-    private string? Bind()
+    private string Bind()
     {
-        if (CommandLength != 1) return RobotReply.ParameterLengthError;
-
-        if (!long.TryParse(Command[0], out var iuid)) return RobotReply.ParameterError;
         try
         {
+            if (CommandLength != 1) return RobotReply.ParameterLengthError;
+
+            if (!long.TryParse(Command[0], out var iuid)) return RobotReply.ParameterError;
             var userinfo = ArcaeaLimitedApi.Userinfo(iuid);
             var user = User ?? new BotUserInfo { QqId = Info.FromQq };
             user.ArcId = iuid;
@@ -33,9 +35,12 @@ internal class ArcExecutor : ExecutorBase
         catch (WebException e)
         {
             if (((HttpWebResponse)e.Response!).StatusCode == HttpStatusCode.NotFound) return RobotReply.ArcUidNotFound;
+            return RobotReply.ExceptionOccured(e);
         }
-
-        return null;
+        catch (Exception e)
+        {
+            return RobotReply.ExceptionOccured(e);
+        }
     }
 
 
@@ -60,7 +65,7 @@ internal class ArcExecutor : ExecutorBase
     }
 
     [CommandPrefix("/arc info ")]
-    private string? Search()
+    private string Search()
     {
         if (User == null) return RobotReply.NotBind;
         if (User.ArcId < 2) return RobotReply.NotBindArc;
@@ -72,7 +77,7 @@ internal class ArcExecutor : ExecutorBase
 
         if (result is null) return RobotReply.ParameterError;
 
-        if (result.Code != 0) return GetSongAliasErrorMessage(RobotReply, result.Code, result.Data);
+        if (result.Code != 0) return GetSongAliasErrorMessage(RobotReply, result.Code, result.Data)!;
         var arcsong = result.Data[0];
 
         var recentdata = ArcaeaLimitedApi.Userinfo(User.ArcId);

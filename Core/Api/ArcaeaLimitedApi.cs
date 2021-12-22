@@ -6,7 +6,7 @@ namespace ThesareaClient.Core.Api;
 internal static class ArcaeaLimitedApi
 {
     private static HttpClient Client;
-    private static bool _inited = false;
+    private static bool _inited;
 
 
     private static void Init()
@@ -20,7 +20,12 @@ internal static class ArcaeaLimitedApi
 
     private static string GetString(string url)
     {
-        if (!_inited) Init();
+        if (!_inited)
+        {
+            Init();
+            _inited = true;
+        }
+
         return Client.GetStringAsync(url).GetAwaiter().GetResult();
     }
 
