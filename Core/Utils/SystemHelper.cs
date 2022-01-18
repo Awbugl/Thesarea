@@ -35,6 +35,7 @@ internal static class SystemHelper
 
         ArcaeaLimitedApi.Api = config!.Api;
         ArcaeaLimitedApi.Token = config.Token;
+        ArcaeaLimitedApi.Init();
 
         //SqliteHelper.TryCreateTable();
     }

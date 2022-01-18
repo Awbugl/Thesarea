@@ -14,5 +14,5 @@ internal static class ThesareaApi
     private static string GetString(string url) => Client.GetStringAsync(url).GetAwaiter().GetResult();
     
     internal static ThesareaApiSongData SongAlias(string alias) =>
-        JsonConvert.DeserializeObject<ThesareaApiSongData>(GetString($"{Api}/song?alias={alias}"))!;
+        JsonConvert.DeserializeObject<ThesareaApiSongData>(GetString($"{Api}/song/?alias={alias}"))!;
 }

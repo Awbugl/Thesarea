@@ -6,10 +6,8 @@ namespace ThesareaClient.Core.Api;
 internal static class ArcaeaLimitedApi
 {
     private static HttpClient Client;
-    private static bool _inited;
 
-
-    private static void Init()
+    internal static void Init()
     {
         Client = new();
         Client.DefaultRequestHeaders.Authorization = new("Bearer", Token);
@@ -18,16 +16,7 @@ internal static class ArcaeaLimitedApi
     internal static string Api { get; set; }
     internal static string Token { get; set; }
 
-    private static string GetString(string url)
-    {
-        if (!_inited)
-        {
-            Init();
-            _inited = true;
-        }
-
-        return Client.GetStringAsync(url).GetAwaiter().GetResult();
-    }
+    private static string GetString(string url) => Client.GetStringAsync(url).GetAwaiter().GetResult();
 
     internal static UserinfoDataItem? Userinfo(long uid) =>
         JsonConvert.DeserializeObject<UserinfoData>(GetString($"{Api}/user/{uid:D9}"))?.Data;
