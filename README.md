@@ -1,6 +1,7 @@
 # Thesarea
 
 使用.Net6.0，基于Sora与go-cqhttp的Arcaea查分QQBot
+已经停止维护，请使用者转到Andreal
 
 ----
 
